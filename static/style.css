@@ -1,0 +1,68 @@
+body {
+    font-family: sans-serif;
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+}
+
+.siteNav {
+    display: inline-block;
+    background-color: black;
+    width: 100%;
+}
+
+.generalNav {
+    display: inline-block;
+    background-color: black;
+    border-top: 2px solid #5271FF;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.logo {
+    margin-left: 12px;
+}
+
+.navlinks {
+    display: flex;
+    gap: 2rem;
+    float: right;
+    margin-top: 3rem;
+    margin-right: 30px;
+}
+
+.navlinks2 {
+    display: flex;
+    gap: 2rem;
+    margin-top: 25px;
+    
+}
+
+.navlinks li a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    margin-right: 15px;
+}
+
+.navlinks2 li a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    margin-right: 15px;
+    
+}
+
+.navlinks li a:hover {
+    color: #5271FF;
+    font-weight: 600;
+}
+
+.navlinks2 li a:hover {
+    color: #5271FF;
+    font-weight: 600;
+}
+
+/* index css */
+.homeContent {
+    margin: 80px 100px;
+}
