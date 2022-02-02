@@ -117,9 +117,19 @@ footer {
     font-weight: 600;
 }
 
+.navlinks3 li a:hover {
+    color: #5271FF;
+    font-weight: 600;
+}
+
+.mediaRight img:hover {
+    cursor: pointer;
+}
+
 /* index css */
 .content {
     margin: 80px;
+    width: 50%;
 }
 
 /* events css */
@@ -161,17 +171,77 @@ footer {
     margin-bottom: 20px;
   }
   
-  .cardContainer img {
-    height: 8rem;
-    width: 12rem;
-    display: flex;
-  }
-  
-  .cardContainer h3 {
-    margin: 0;
-  }
-  
-  .eventLink {
+.cardContainer img {
+height: 8rem;
+width: 12rem;
+display: flex;
+}
+
+.cardContainer h3 {
+margin: 0;
+}
+
+.eventLink {
+text-decoration: none;
+color: black;
+}
+
+/* event css */
+.eventDescription {
+    margin: 80px;
+}
+
+.eventHeader {
+    float: left;
+    width: 50%;
+}
+
+.eventTitle h2, .details h2 {
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.details {
+    margin-top: 30px;
+}
+
+.details img {
+    margin-top: 20px;
+    margin-bottom: 80px;
+}
+
+.eventButtons {
+    float: right;
+    margin-top: 10px;
+}
+
+.eventButtons {
+    margin-bottom: 80px;
+}
+
+.eventButtons a {
+    padding: 15px 30px;
     text-decoration: none;
-    color: black;
-  }
+    border-radius: 10px;
+    border: none;
+}
+
+.deleteButton {
+    color: white;
+    background-color: #FF3F3F;
+}
+
+.deleteButton:hover {
+    background-color: #b82e2e;
+}
+
+.updateButton {
+    color: white;
+    background-color: #5271FF;
+    margin-right: 10px;
+}
+
+.updateButton:hover {
+    background-color: #3454e2;
+}
+
