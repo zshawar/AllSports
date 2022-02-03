@@ -245,3 +245,56 @@ color: black;
     background-color: #3454e2;
 }
 
+
+
+.formContainer {
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25), 5px 5px 14px #5271FF;
+    width: 50%;
+    height: auto;
+    background-color: white;
+    margin: 100px;
+}
+
+.formHeading {
+    display: flex;
+    justify-content: center;
+}
+
+.createForm {
+    display: flex;
+    justify-content: center;
+}
+
+.formContainer a {
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 10px;
+    border: none;
+}
+
+.formContainer aside {
+    display: flex;
+    justify-content: center;
+}
+
+.createButton {
+    color: white;
+    background-color: #5271FF;
+}
+
+.createButton:hover {
+    background-color: #3454e2;
+}
+
+input {
+    display: block;
+    padding: 5px;
+    width: 70%;
+    margin: 10px 0px;
+}
+
+.formContent label, .formContent input {
+    margin-left: 12%;
+}
