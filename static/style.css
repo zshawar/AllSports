@@ -293,8 +293,21 @@ input {
     padding: 5px;
     width: 70%;
     margin: 10px 0px;
+    
 }
 
-.formContent label, .formContent input {
+textarea {
+    display: flex;
+    padding: 5px;
+    width: 70%;
+    margin: 10px 0;
+    
+}
+
+label {
+    display: block;
+}
+
+.formContent label, .formContent input, .formContent textarea {
     margin-left: 12%;
 }
