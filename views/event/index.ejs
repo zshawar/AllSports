@@ -1,0 +1,55 @@
+<%- include('../partials/header.ejs') %>
+
+<main class="events">
+
+    <section class="eventContent">
+        <% if(!events.length) {%>
+            <p>There are no sport events to display</p>
+        <% } %>
+        <% if(soccer.length) {%>
+            <h1 class="eventCategory">Soccer</h1>
+            <section class="eventCards">
+                <% soccer.forEach(event=>{ %>
+                <a class="eventLink" href="/events/<%=event.id%>">
+                    <div class="cardContainer">
+                        <h3><%=event.title%></h3>
+                        <p><%=event.details%></p>
+                        <img src="<%=event.image%>" alt="Soccer Game"/>
+                    </div>
+                </a>
+                <% }); } %>
+            </section>
+
+
+            <% if(basketball.length) {%>
+                <h1 class="eventCategory">Basketball</h1>
+                <section class="eventCards">
+                    <% basketball.forEach(event=>{ %>
+                    <a class="eventLink" href="/events/<%=event.id%>">
+                        <div class="cardContainer">
+                            <h3><%=event.title%></h3>
+                            <p><%=event.details%></p>
+                            <img src="<%=event.image%>" alt="Soccer Game"/>
+                        </div>
+                    </a>
+                    <% }); } %>
+                </section>
+
+            <% if(kickball.length) {%>
+                <h1 class="eventCategory">Kickball</h1>
+                <section class="eventCards">
+                    <% kickball.forEach(event=>{ %>
+                    <a class="eventLink" href="/events/<%=event.id%>">
+                        <div class="cardContainer">
+                            <h3><%=event.title%></h3>
+                            <p><%=event.details%></p>
+                            <img src="<%=event.image%>" alt="Soccer Game"/>
+                        </div>
+                    </a>
+                    <% }); } %>
+                </section>
+         
+    </section>
+</main>
+
+<%- include('../partials/footer.ejs') %>
