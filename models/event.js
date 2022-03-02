@@ -8,9 +8,9 @@ const events = [
         host: 'Zaina',
         details: 'Join us at the Morrison YMCA.',
         location: 'Morrison YMCA',
-        date: 'Monday, February 28th, 2022',
-        start: '2:00pm',
-        end: '3:00pm',
+        date: '2022-02-18',
+        start: '14:00',
+        end: '15:00',
         image: '/images/soccerGame.png'
     },
     {
@@ -20,9 +20,9 @@ const events = [
         host: 'Paige',
         details: 'Cone and shooting drills to improve our skills.',
         location: 'UREC Field 7',
-        date: 'Tuesday, March 1st, 2022',
-        start: '4:00pm',
-        end: '5:00pm',
+        date: '2022-03-01',
+        start: '16:00',
+        end: '17:00',
         image: '/images/soccerDrills.jpg'
     },
     {
@@ -32,9 +32,9 @@ const events = [
         host: 'Kyle',
         details: 'Pick a country and come play world cup! Last one standing wins!',
         location: 'Brace YMCA',
-        date: 'Tuesday, March 1st, 2022',
-        start: '6:00pm',
-        end: '7:00pm',
+        date: '2022-03-01',
+        start: '18:00',
+        end: '19:00',
         image: '/images/soccerWorldCup.jpg'
     },
     {
@@ -44,9 +44,9 @@ const events = [
         host: 'Zaina',
         details: 'Come play a few games of knock out to get practice shooting!',
         location: 'Belk Gym',
-        date: 'Monday, February 28th, 2022',
-        start: '2:00pm',
-        end: '3:00pm',
+        date: '2022-02-28',
+        start: '14:00',
+        end: '15:00',
         image: '/images/basketballKnockout.jpg'
     },
     {
@@ -56,9 +56,9 @@ const events = [
         host: 'Sarah',
         details: 'Join a game of basketball for fun. All skill levels are welcome.',
         location: 'Brace YMCA',
-        date: 'Tuesday, March 1st, 2022',
-        start: '6:00pm',
-        end: '7:00pm',
+        date: '2022-03-01',
+        start: '18:00',
+        end: '19:00',
         image: '/images/basketballGame.png'
     },
     {
@@ -68,9 +68,9 @@ const events = [
         host: 'Mike',
         details: 'Many teams will play, only one will be 1st.',
         location: 'Morrison YMCA',
-        date: 'Tuesday, March 1st, 2022',
-        start: '6:00pm',
-        end: '7:00pm',
+        date: '2022-03-01',
+        start: '18:00',
+        end: '19:00',
         image: '/images/basketballHalfcourt.jpg'
     },
     {
@@ -80,9 +80,9 @@ const events = [
         host: 'Ken',
         details: 'Join us at the Morrison YMCA on the baseball fields',
         location: 'Morrison',
-        date: 'Saturday, March 5th, 2022',
-        start: '12:00pm',
-        end: '2:00pm',
+        date: '2022-03-05',
+        start: '12:00',
+        end: '14:00',
         image: '/images/kickballAdult.jpg'
     },
     {
@@ -92,9 +92,9 @@ const events = [
         host: 'Kelly',
         details: 'Meet up at Ardrey Kell for a fun team game. We will be checking school ids',
         location: 'Ardrey Kell',
-        date: 'Saturday, March 5th, 2022',
-        start: '12:00pm',
-        end: '2:00pm',
+        date: '2022-03-05',
+        start: '12:00',
+        end: '14:00',
         image: '/images/kickballHighschool.jpg'
     },
     {
@@ -104,9 +104,9 @@ const events = [
         host: 'Charlie',
         details: 'Smaller fields for more games and competition.',
         location: 'Morrison Baseball Fields',
-        date: 'Sunday, March 6th, 2022',
-        start: '6:00pm',
-        end: '7:00pm',
+        date: '2022-03-06',
+        start: '18:00',
+        end: '19:00',
         image: '/images/kickball.png'
     }
     
@@ -122,7 +122,7 @@ exports.findById = id => events.find(event=>event.id === id);
 
 exports.save =  event => {
     event.id = uuidv4();
-    event.createdAt = DateTime.now().toLocaleString(DateTime.DATETIME_SHORT);
+    event.image = '/images/soccerGame.png';
     events.push(event)
 };
 
@@ -136,6 +136,7 @@ exports.updateById = (id, newevent) => {
         event.date = newevent.date;
         event.start = newevent.start;
         event.end = newevent.end;
+        event.image = newevent.image;
         return true;
     }
     else{

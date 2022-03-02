@@ -1,5 +1,6 @@
 const { redirect } = require('express/lib/response');
 const model = require('../models/event');
+const { DateTime } = require('luxon');
 
 //GET /events: send all events to the user
 exports.index = (req, res) => {
@@ -29,7 +30,7 @@ exports.show = (req, res, next) => {
     let id = req.params.id;
     let event = model.findById(id);
     if(event) {
-        res.render('./event/show', {event});
+        res.render('./event/show', {event, DateTime });
     } else {
         let err = new Error('Cannot find a event with id ' + id);
         err.status = 404;

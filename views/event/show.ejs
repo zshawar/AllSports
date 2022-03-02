@@ -5,14 +5,14 @@
         <section class="eventTitle">
             <h2><%= event.title %></h2>
             <p>Hosted by <%= event.host %></p>
-            <p><%= event.date %></p>
-            <p><%= event.start %> - <%= event.end %></p>
+            <p><%= DateTime.fromISO(event.date).toLocaleString(DateTime.DATE_HUGE) %></p>
+            <p><%= DateTime.fromISO(event.start).toLocaleString(DateTime.TIME_SIMPLE) %> - <%= DateTime.fromISO(event.end).toLocaleString(DateTime.TIME_SIMPLE) %></p> 
             <p><%= event.location %></p>
         </section>
         <section class="details">
             <h2>Details</h2>
             <p><%= event.details %></p>
-            <img src="<%= event.image %>" alt="">
+            <img src="<%= event.image %>" alt="Sport" class="eventImages">
         </section>
     </div>
     <form class="eventButtons">

@@ -2,6 +2,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const eventRoutes = require('./routes/eventRoutes');
+const mainRoutes = require('./routes/mainRoutes');
 const methodOverride = require('method-override');
 
 //create application
@@ -22,11 +23,13 @@ app.use(methodOverride('_method'));
 
 
 //set up routes
-app.get('/', (req, res) => {
-    res.render('index');
-});
+// app.get('/', (req, res) => {
+//     res.render('index');
+// });
 
 app.use('/events', eventRoutes);
+
+app.use('/', mainRoutes);
 
 app.use((req, res, next) => {
     let err = new Error('Server cannot locate resource at ' + req.url);
