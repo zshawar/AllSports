@@ -152,7 +152,7 @@ exports.updateById = (id, newevent) => {
         event.start = newevent.start;
         event.end = newevent.end;
         //default image if user does not send one
-        if(!event.image){
+        if(!newevent.image){
             event.image = '/images/logoSymbol.png';
         } else {
             event.image = newevent.image;
