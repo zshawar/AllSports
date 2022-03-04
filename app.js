@@ -23,9 +23,6 @@ app.use(methodOverride('_method'));
 
 
 //set up routes
-// app.get('/', (req, res) => {
-//     res.render('index');
-// });
 
 app.use('/events', eventRoutes);
 

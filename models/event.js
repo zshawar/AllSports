@@ -134,8 +134,9 @@ exports.findById = id => events.find(event=>event.id === id);
 
 exports.save =  event => {
     event.id = uuidv4();
+    //default image if user does not send one
     if(!event.image){
-        event.image = '/images/soccerGame.png';
+        event.image = '/images/logoSymbol.png';
     }
     events.push(event)
 };
@@ -150,7 +151,12 @@ exports.updateById = (id, newevent) => {
         event.date = newevent.date;
         event.start = newevent.start;
         event.end = newevent.end;
-        event.image = newevent.image;
+        //default image if user does not send one
+        if(!event.image){
+            event.image = '/images/logoSymbol.png';
+        } else {
+            event.image = newevent.image;
+        }
         return true;
     }
     else{

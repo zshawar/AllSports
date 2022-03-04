@@ -33,7 +33,7 @@ exports.show = (req, res, next) => {
     if(event) {
         res.render('./event/show', {event, DateTime });
     } else {
-        let err = new Error('Cannot find a event with id ' + id);
+        let err = new Error('Cannot find an event with id ' + id);
         err.status = 404;
         next(err);
     }
@@ -48,7 +48,7 @@ exports.edit = (req, res, next) => {
     if(event) {
         res.render('./event/edit', {event});
     } else {
-        let err = new Error('Cannot find a event with id ' + id);
+        let err = new Error('Cannot find an event with id ' + id);
         err.status = 404;
         next(err);
     }
@@ -63,7 +63,7 @@ exports.update = (req, res, next) => {
         res.redirect('/events/'+id);
     }
     else {
-        let err = new Error('Cannot find a event with id ' + id);
+        let err = new Error('Cannot find an event with id ' + id);
         err.status = 404;
         next(err);
     }
@@ -75,7 +75,7 @@ exports.delete = (req, res, next) => {
     if(model.deleteById(id)){
         res.redirect('/events');
     } else {
-        let err = new Error('Cannot find a event with id ' + id);
+        let err = new Error('Cannot find an event with id ' + id);
         err.status = 404;
         next(err);
     }
