@@ -3,51 +3,24 @@
 <main class="events">
 
     <section class="eventContent">
-        <% if(!events.length) {%>
-            <p>There are no sport events to display</p>
-        <% } %>
-        <% if(soccer.length) {%>
-            <h1 class="eventCategory">Soccer</h1>
-            <section class="eventCards">
-                <% soccer.forEach(event=>{ %>
-                <a class="eventLink" href="/events/<%=event.id%>">
-                    <div class="cardContainer">
-                        <h3><%=event.title%></h3>
-                        <p><%=event.details%></p>
-                        <img src="<%=event.image%>" alt="Soccer Game"/>
-                    </div>
-                </a>
-                <% }); } %>
-            </section>
 
-
-            <% if(basketball.length) {%>
-                <h1 class="eventCategory">Basketball</h1>
+        <% if(events.length) {%>
+            <% sports.forEach(category=>{ %>
+                <h1 class="eventCategory"><%= category %></h1>
                 <section class="eventCards">
-                    <% basketball.forEach(event=>{ %>
+                    <% events.forEach(event=>{ if(category == event.sport) {%>
                     <a class="eventLink" href="/events/<%=event.id%>">
                         <div class="cardContainer">
                             <h3><%=event.title%></h3>
-                            <p><%=event.details%></p>
+                            <p><span>Location:</span> <%=event.location%></p>
+                            <p><span>Date:</span> <%= DateTime.fromISO(event.date).toLocaleString(DateTime.DATE_HUGE) %></p>
                             <img src="<%=event.image%>" alt="Soccer Game"/>
                         </div>
                     </a>
-                    <% }); } %>
+                    <% } }); %>
                 </section>
+        <% }); }%>
 
-            <% if(kickball.length) {%>
-                <h1 class="eventCategory">Kickball</h1>
-                <section class="eventCards">
-                    <% kickball.forEach(event=>{ %>
-                    <a class="eventLink" href="/events/<%=event.id%>">
-                        <div class="cardContainer">
-                            <h3><%=event.title%></h3>
-                            <p><%=event.details%></p>
-                            <img src="<%=event.image%>" alt="Soccer Game"/>
-                        </div>
-                    </a>
-                    <% }); } %>
-                </section>
          
     </section>
 </main>

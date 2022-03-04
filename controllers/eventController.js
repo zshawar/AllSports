@@ -6,10 +6,11 @@ const { DateTime } = require('luxon');
 exports.index = (req, res) => {
     // res.send('send all events');
     let events = model.find();
-    let soccer = model.filter('Soccer');
-    let basketball = model.filter('Basketball');
-    let kickball = model.filter('Kickball');
-    res.render('./event/index', {events, soccer, basketball, kickball});
+    // let soccer = model.filter('Soccer');
+    // let basketball = model.filter('Basketball');
+    // let kickball = model.filter('Kickball');
+    let sports = model.category();
+    res.render('./event/index', {events, sports, DateTime});
 };
 
 //GET /events/new: send html form for creating a new event

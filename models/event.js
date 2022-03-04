@@ -112,8 +112,20 @@ const events = [
     
 ];
 
-
 exports.find = () => events;
+
+exports.category = () => {
+    const mySports = new Set();
+    events.forEach(event => {
+        mySports.add(event.sport);
+    });
+  
+    let arr = [...mySports];
+    return arr;
+    
+};
+
+
 exports.filter = topic => events.filter(event => topic === event.sport);
 
 
@@ -122,7 +134,9 @@ exports.findById = id => events.find(event=>event.id === id);
 
 exports.save =  event => {
     event.id = uuidv4();
-    event.image = '/images/soccerGame.png';
+    if(!event.image){
+        event.image = '/images/soccerGame.png';
+    }
     events.push(event)
 };
 
