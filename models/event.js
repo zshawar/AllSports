@@ -1,42 +1,18 @@
-const { DateTime } = require('luxon');
-const {v4: uuidv4} = require('uuid');
-const {ObjectId} = require('mongodb');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-let events;
+const eventSchema = new Schema({
+    sport: {type: String, required: [true, 'sport is required']},
+    title: {type: String, required: [true, 'title is required']},
+    host: {type: String, required: [true, 'host is required']},
+    details: {type: String, required: [true, 'details are required'],
+            minLength:[10, 'the content should have at least 10 characters']},
+    location: {type: String, required: [true, 'location is required']},
+    date: {type: String, required: [true, 'date is required']},
+    start: {type: String, required: [true, 'start time is required']},
+    end: {type: String, required: [true, 'end time is required']},
+    image: {type: String, required: [true, 'image is required']}
+});
 
-//reference variable to events collection in mongodb
-exports.getCollection = db =>{
-    events = db.collection('events');
-};
-
-exports.find = () => events.find().toArray();
-
-exports.category = () => {
-    const mySports = new Set();
-    const categories = events.find();
-    categories.forEach(event => {
-        mySports.add(event.sport);
-      
-        
-    });
-    console.log(mySports);
-    let arr = [...mySports];
-    return arr;
-    
-};
-
-
-// exports.filter = topic => events.filter(event => topic === event.sport);
-
-
-exports.findById = id => events.findOne({_id: ObjectId(id)});
-
-exports.save =  event => events.insertOne(event);
-
-exports.updateById = (id, newevent) =>  events.updateOne({_id: Object(id)}, {$set:{sport:newevent.sport, 
-    title:newevent.title, host:newevent.host, details:newevent.details, location:newevent.location,
-    date:newevent.date, start:newevent.start, end:newevent.end, image:newevent.image}});
-    
-    
-
-exports.deleteById = id =>  events.deleteOne({_id: ObjectId(id)});
+//collection name is events in the database
+module.exports = mongoose.model('event', eventSchema);

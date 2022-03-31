@@ -4,8 +4,7 @@ const morgan = require('morgan');
 const eventRoutes = require('./routes/eventRoutes');
 const mainRoutes = require('./routes/mainRoutes');
 const methodOverride = require('method-override');
-const {MongoClient} = require('mongodb');
-const {getCollection} = require('./models/event');
+const mongoose = require('mongoose');
 
 //create application
 const app = express();
@@ -13,15 +12,11 @@ const app = express();
 //configure application
 let port = 3000;
 let host = 'localhost';
-let url = 'mongodb://localhost:27017';
 app.set('view engine', 'ejs');
 
-//connect to mongodb
-MongoClient.connect(url)
-.then(client=>{
-    //select database we are using
-    const db = client.db('NBAD');
-    getCollection(db);
+//connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/NBAD', {useNewUrlParser: true, useUnifiedTopology:true})
+.then(()=>{
 
     //start the server
     app.listen(port, host, ()=> {

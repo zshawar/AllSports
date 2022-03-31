@@ -16,7 +16,7 @@
             <input type="text" placeholder="Host" name="host" id="host" value = "<%=event.host%>" required>
 
             <label for="details">Details</label>
-            <textarea name="details" id="details" rows="5" required><%=event.details%></textarea>
+            <textarea name="details" id="details" rows="5" required minlength="10"><%=event.details%></textarea>
 
             <label for="location">Where</label>
             <input type="text" placeholder="Location" name="location" id="location" value = "<%=event.location%>" required>
