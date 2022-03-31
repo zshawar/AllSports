@@ -3,14 +3,17 @@ const model = require('../models/event');
 const { DateTime } = require('luxon');
 
 //GET /events: send all events to the user
-exports.index = (req, res) => {
+exports.index = (req, res, next) => {
     // res.send('send all events');
-    let events = model.find();
-    // let soccer = model.filter('Soccer');
-    // let basketball = model.filter('Basketball');
-    // let kickball = model.filter('Kickball');
-    let sports = model.category();
-    res.render('./event/index', {events, sports, DateTime});
+    model.find()
+    .then(events=>{
+        let sports = model.distinct('sport');
+        console.log(sports);
+        res.render('./event/index', {events, sports, DateTime});
+    })
+    .catch(err=>next(err));
+    
+    
 };
 
 //GET /events/new: send html form for creating a new event
@@ -29,15 +32,17 @@ exports.create = (req, res) => {
 //GET /events/:id: send details of event identified by id
 exports.show = (req, res, next) => {
     let id = req.params.id;
-    let event = model.findById(id);
-    if(event) {
-        res.render('./event/show', {event, DateTime });
-    } else {
-        let err = new Error('Cannot find an event with id ' + id);
-        err.status = 404;
-        next(err);
-    }
-    
+    model.findById(id)
+    .then(event=>{
+        if(event) {
+            res.render('./event/show', {event, DateTime });
+        } else {
+            let err = new Error('Cannot find an event with id ' + id);
+            err.status = 404;
+            next(err);
+        }
+    })
+    .catch(err=>next(err));
     
 };
 

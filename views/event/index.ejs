@@ -3,13 +3,17 @@
 <main class="events">
 
     <section class="eventContent">
+        <h1><%=events[1].host%></h1>
+        <h1><%=sports[1]%></h1>
+
 
         <% if(events.length) {%>
             <% sports.forEach(category=>{ %>
                 <h1 class="eventCategory"><%= category %></h1>
                 <section class="eventCards">
-                    <% events.forEach(event=>{ if(category == event.sport) {%>
-                    <a class="eventLink" href="/events/<%=event.id%>">
+                    <% events.forEach(event=>{ %>
+                     <%   if(category === event.sport) {%>
+                    <a class="eventLink" href="/events/<%=event._id%>">
                         <div class="cardContainer">
                             <h3><%=event.title%></h3>
                             <p><span>Location:</span> <%=event.location%></p>

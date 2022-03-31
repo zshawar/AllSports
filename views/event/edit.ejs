@@ -5,7 +5,7 @@
     <section class="formContainer">
         <h1 class="formHeading">EDIT EVENT</h1>
         
-        <form method="POST" action="/events/<%=event.id%>?_method=PUT" class="formContent">
+        <form method="POST" action="/events/<%=event._id%>?_method=PUT" class="formContent">
             <label for="sport">Sport</label>
             <input type="text" placeholder="Sport" name="sport" id="sport" value = "<%=event.sport%>" required>
 
