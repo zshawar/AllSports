@@ -31,38 +31,12 @@ exports.category = () => {
 
 exports.findById = id => events.findOne({_id: ObjectId(id)});
 
-exports.save =  event => {
-    event.id = uuidv4();
-    events.push(event);
-};
+exports.save =  event => events.insertOne(event);
 
-exports.updateById = (id, newevent) => {
-    let event = events.find(event=>event.id === id);
-    if(event){
-        event.sport = newevent.sport;
-        event.title = newevent.title;
-        event.host = newevent.host;
-        event.details = newevent.details;
-        event.location = newevent.location;
-        event.date = newevent.date;
-        event.start = newevent.start;
-        event.end = newevent.end;
-        event.image = newevent.image;
-        
-        return true;
-    }
-    else{
-        return false;
-    }
-};
+exports.updateById = (id, newevent) =>  events.updateOne({_id: Object(id)}, {$set:{sport:newevent.sport, 
+    title:newevent.title, host:newevent.host, details:newevent.details, location:newevent.location,
+    date:newevent.date, start:newevent.start, end:newevent.end, image:newevent.image}});
+    
+    
 
-exports.deleteById = id => {
-    let index = events.findIndex(event => event.id === id);
-    if(index !== -1) {
-        events.splice(index, 1);
-        return true;
-    }
-    else {
-        return false;
-    }
-};
+exports.deleteById = id =>  events.deleteOne({_id: ObjectId(id)});
