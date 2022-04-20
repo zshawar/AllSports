@@ -74,6 +74,7 @@ footer {
 .navlinks2 {
     display: flex;
     gap: 2rem;
+    float: left;
     margin-top: 25px;
     
 }
@@ -100,6 +101,32 @@ footer {
     margin-right: 15px;
     
 }
+
+#welcome {
+    color: #5271FF;
+    font-size: 15pt;
+    display: flex;
+    float: right;
+    margin-right: 30px;
+    
+}
+
+.close {
+    background: none;
+    border: none;
+    font-size: 15pt;
+    float: right;
+    margin-right: 25px;
+}
+
+.close:hover {
+    cursor: pointer;
+}
+
+li {
+    float: right;
+}
+
 
 .navlinks3 li a {
     color: white;
@@ -147,6 +174,13 @@ footer {
     justify-content: center;
     margin-top: 80px;
 }
+
+.profileName {
+    display: flex;
+    justify-content: center;
+  
+}
+
 .events {
     position: relative;
 }
@@ -249,6 +283,13 @@ color: black;
     border: none;
 }
 
+.cardContainer button {
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 10px;
+    border: none;
+}
+
 .deleteButton {
     color: white;
     background-color: #FF3F3F;
@@ -281,6 +322,16 @@ color: black;
     margin: 100px;
 }
 
+.accountContainer {
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25), 5px 5px 14px #5271FF;
+    width: 30%;
+    height: auto;
+    background-color: white;
+    margin: 100px;
+}
+
 .formHeading {
     display: flex;
     justify-content: center;
@@ -291,14 +342,14 @@ color: black;
     justify-content: center;
 }
 
-.formContainer button {
+.formContainer button, .accountContainer button{
     padding: 15px 30px;
     text-decoration: none;
     border-radius: 10px;
     border: none;
 }
 
-.formContainer aside {
+.formContainer aside, .accountContainer aside, .cardContainer aside {
     display: flex;
     justify-content: center;
 }
@@ -336,3 +387,22 @@ label {
 .formContent label, .formContent input, .formContent textarea {
     margin-left: 12%;
 }
+
+
+/* Flash messages */
+.success {
+    background: rgba(108, 192, 112, 0.7);
+    color: #fff;
+    
+    text-align: center;
+    padding: 10px 10px;
+}
+  
+.error {
+background: rgba(255, 102, 51, 0.7);
+color: #fff;
+
+text-align: center;
+padding: 10px 10px;
+}
+

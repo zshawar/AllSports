@@ -1,0 +1,26 @@
+<%- include('../partials/header.ejs') %>
+
+<main class="createForm">
+           
+    <section class="accountContainer">
+        <h1 class="formHeading">LOGIN</h1>
+        
+        <form action = '/users/login' method = 'POST' class="formContent">
+
+            <label for="email">Email Address</label>
+            <input type="text" placeholder="Email" name="email" id="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" placeholder="Password" name="password" id="password" minlength="8" maxlength="64" required>
+
+            <aside>
+                <button class="createButton">Login</button>
+            </aside>
+        </form>
+            
+        
+    </section>
+
+</main>
+
+<%- include('../partials/footer.ejs') %>

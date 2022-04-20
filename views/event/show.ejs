@@ -4,7 +4,7 @@
     <div class="eventHeader">
         <section class="eventTitle">
             <h2><%= event.title %></h2>
-            <p>Hosted by <%= event.host %></p>
+            <p>Hosted by <%= event.host.firstName + " " + event.host.lastName %></p>
             <p><%= DateTime.fromISO(event.date).toLocaleString(DateTime.DATE_HUGE) %></p>
             <p><%= DateTime.fromISO(event.start).toLocaleString(DateTime.TIME_SIMPLE) %> - <%= DateTime.fromISO(event.end).toLocaleString(DateTime.TIME_SIMPLE) %></p> 
             <p><%= event.location %></p>
@@ -15,10 +15,12 @@
             <img src="<%= event.image %>" alt="Sport" class="eventImages">
         </section>
     </div>
+    <%if(user == event.host._id) {%>
     <form class="eventButtons">
         <button type="submit" class="updateButton" formmethod="GET" formaction="/events/<%=event._id%>/edit">Update</button>
         <button type="submit" class="deleteButton" formmethod="POST" formaction="/events/<%=event._id%>?_method=DELETE">Delete</button>
     </form>
+    <%}%>
 </main>
 
 <%- include('../partials/footer.ejs') %>

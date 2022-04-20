@@ -3,6 +3,7 @@
 <main class="events">
 
     <section class="eventContent">
+        <h1 class="profileName"><%=user.firstName%>'s Events</h1>
         <% if(events.length) {%>
             <% sports.forEach(category=>{ %>
                 <h1 class="eventCategory"><%= category %></h1>
@@ -15,12 +16,20 @@
                             <p><span>Location:</span> <%=event.location%></p>
                             <p><span>Date:</span> <%= DateTime.fromISO(event.date).toLocaleString(DateTime.DATE_HUGE) %></p>
                             <img src="<%=event.image%>" alt="Event Image"/>
+                            <form>
+                                <aside>
+                                    <button type="submit" class="updateButton" formmethod="GET" formaction="/events/<%=event._id%>/edit">Update</button>
+                                    <button type="submit" class="deleteButton" formmethod="POST" formaction="/events/<%=event._id%>?_method=DELETE">Delete</button>
+                                </aside>
+                            </form>
+                                
+                            
                         </div>
                     </a>
                     <% } }); %>
                 </section>
         <% }); } else {%>
-            <h1 class="eventCategory">There are no sport events to display.</h1>
+            <h2 class="eventCategory">You are currently hosting no events</h2>
             <% } %>
     </section>
 </main>

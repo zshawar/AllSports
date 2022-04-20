@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   
     <link rel="stylesheet" href="/css/style.css">
+
     <link rel="icon" type="image/x-icon" href="../images/logoSymbol.png">
+
+  
     <title>All Sports</title>
 </head>
 <body>
@@ -13,8 +18,15 @@
         <a href="/"><img src="/images/logo.png" alt="All Sports Logo" class="logo"></a>
         <ul class="navlinks">
             <li><a href="/events/new">New Events</a></li>
-            <li><a href="/">Login</a></li>
-            <li><a href="/">Signup</a></li>
+            <%if(!user) {%>
+                <li><a href="/users/login">Login</a></li>
+                <li><a href="/users/new">Signup</a></li>
+            <%} else {%>
+                <li><a href="/users/profile">Profile</a></li>
+                <li><a href="/users/logout">Logout</a></li>
+            <%}%>
+           
+            
         </ul>
     </nav>
     <nav class="generalNav">
@@ -23,5 +35,31 @@
             <li><a href="/events">Events</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/contact">Contact</a></li>
+            
         </ul>
+        <% if(user){ %>
+            <ul id="welcome">Welcome, <%=firstName + " " + lastName%></ul>
+        <%}%>
     </nav>
+
+    <% if(errorMessages.length > 0) {%>
+        <% errorMessages.forEach(message=>{%>
+            <div class='alert error alert-dismissible fade show'>
+                <%=message%>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+        <%});%>
+    <%}%>
+    
+    <% if(successMessages.length > 0) {%>
+        <% successMessages.forEach(message=>{%>
+            <div class='alert success alert-dismissible fade show'>
+                <%=message%>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+        <%});%>
+    <%}%>

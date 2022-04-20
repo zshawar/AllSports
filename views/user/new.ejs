@@ -1,0 +1,31 @@
+<%- include('../partials/header.ejs') %>
+
+<main class="createForm">
+           
+    <section class="accountContainer">
+        <h1 class="formHeading">SIGN UP</h1>
+        
+        <form action = '/users' method = 'POST' class="formContent">
+            <label for="firstName">First Name</label>
+            <input type="text" placeholder="First Name" name="firstName" id="firstName" required>
+
+            <label for="lastName">Last Name</label>
+            <input type="text" placeholder="Last Name" name="lastName" id="lastName" required>
+
+            <label for="email">Email Address</label>
+            <input type="text" placeholder="Email" name="email" id="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" placeholder="Password" name="password" id="password" minlength="8" maxlength="64" required>
+
+            <aside>
+                <button class="createButton">Sign Up</button>
+            </aside>
+        </form>
+            
+        
+    </section>
+
+</main>
+
+<%- include('../partials/footer.ejs') %>
