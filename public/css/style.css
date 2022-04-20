@@ -205,7 +205,7 @@ li {
     border-radius: 10px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25), 5px 5px 14px #5271FF;
     width: 13rem;
-    height: 16rem;
+    height: 17rem;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -219,13 +219,28 @@ box-shadow: 0px 10px 14px #5271FF, 5px 5px 14px #5271FF;
 }
   
 .cardContainer img {
-height: 8rem;
-width: 12rem;
-display: flex;
+    height: 8rem;
+    width: 12rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.cardContainer h3, .cardContainer p {
+.cardContainer h3 {
 margin: 0;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+}
+
+.hideExtra {
+    overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+}
+
+.cardContainer p {
+    margin: 0;
 }
 
 .cardContainer p span {
@@ -391,17 +406,13 @@ label {
 
 /* Flash messages */
 .success {
-    background: rgba(108, 192, 112, 0.7);
-    color: #fff;
-    
+    background: rgba(108, 192, 112, 0.7); 
     text-align: center;
     padding: 10px 10px;
 }
   
 .error {
 background: rgba(255, 102, 51, 0.7);
-color: #fff;
-
 text-align: center;
 padding: 10px 10px;
 }

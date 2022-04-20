@@ -40,5 +40,5 @@ body('location', 'Location cannot be empty').notEmpty().trim().escape(),
 body('date', 'Date cannot be empty').notEmpty().trim().escape(),
 body('start', 'Start Time cannot be empty').notEmpty().trim().escape(),
 body('end', 'End Time cannot be empty').notEmpty().trim().escape(),
-body('image', 'Image cannot be empty').notEmpty().trim().escape(),
+body('image', 'Image cannot be empty').notEmpty().trim()
 ];

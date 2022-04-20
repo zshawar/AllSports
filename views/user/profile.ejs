@@ -13,7 +13,7 @@
                     <a class="eventLink" href="/events/<%=event._id%>">
                         <div class="cardContainer">
                             <h3><%=event.title%></h3>
-                            <p><span>Location:</span> <%=event.location%></p>
+                            <p class="hideExtra"><span>Location:</span> <%=event.location%></p>
                             <p><span>Date:</span> <%= DateTime.fromISO(event.date).toLocaleString(DateTime.DATE_HUGE) %></p>
                             <img src="<%=event.image%>" alt="Event Image"/>
                             <form>
