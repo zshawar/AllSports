@@ -30,10 +30,14 @@ exports.create = (req, res, next) => {
     event.host = req.session.user;
     //insert document to database
     event.save()
-    .then((event)=>res.redirect('/events'))
+    .then((event)=>{
+        req.flash('success', 'Event was created successfully!');
+        res.redirect('/events');
+    })
     .catch(err=>{
         if(err.name === 'ValidationError'){
-            err.status = 400;
+            req.flash('error', err.message);  
+            return res.redirect('back');
         }
         next(err);
     });
@@ -81,10 +85,11 @@ exports.update = (req, res, next) => {
         res.redirect('/events/'+id);
     })
     .catch(err=>{
-        if(err.name === 'ValidationError')
-            err.status = 400;
+        if(err.name === 'ValidationError'){
+            req.flash('error', err.message);  
+            return res.redirect('back');
+        }
         next(err);
-        
     });
     
 };

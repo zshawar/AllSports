@@ -406,13 +406,13 @@ label {
 
 /* Flash messages */
 .success {
-    background: rgba(108, 192, 112, 0.7); 
+    background: rgba(108, 192, 112, 0.44); 
     text-align: center;
     padding: 10px 10px;
 }
   
 .error {
-background: rgba(255, 102, 51, 0.7);
+background: rgba(255, 241, 51, 0.44);
 text-align: center;
 padding: 10px 10px;
 }

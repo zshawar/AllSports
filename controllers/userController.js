@@ -48,7 +48,7 @@ exports.login = (req, res, next)=>{
     User.findOne({ email: email })
     .then(user => {
         if (!user) {
-            req.flash('error', 'wrong email address');  
+            req.flash('error', 'Incorrect email address');  
             res.redirect('/users/login');
             } else {
             user.comparePassword(password)
@@ -60,7 +60,7 @@ exports.login = (req, res, next)=>{
                     req.flash('success', 'You have successfully logged in');
                     res.redirect('/users/profile');
             } else {
-                req.flash('error', 'wrong password');      
+                req.flash('error', 'Incorrect password');      
                 res.redirect('/users/login');
             }
             });     
