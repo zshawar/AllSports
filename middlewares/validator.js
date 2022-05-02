@@ -42,3 +42,15 @@ body('start', 'Start Time cannot be empty').notEmpty().trim().escape(),
 body('end', 'End Time cannot be empty').notEmpty().trim().escape(),
 body('image', 'Image cannot be empty').notEmpty().trim()
 ];
+
+
+// Middleware for start and end time
+exports.validateTime = [body('start').matches('/^(0[0-9]1[0-9]2[0-3]):[0-5][0-9]$/'),
+body('end').custom((end,{req})=>{
+    let start = req.body.start;
+    let startMin = parseInt(start.split((":")[0])*60) + parseInt(start.split((":")[1]));
+    let endMin = parseInt(end.split((":")[0])*60) + parseInt(end.split((":")[1]));
+    if (endMin < startMin){
+        
+    }
+})]

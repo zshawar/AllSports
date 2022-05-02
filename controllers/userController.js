@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Event = require('../models/event');
+const RSVP = require('../models/rsvp');
 const { DateTime } = require('luxon');
 
 // Send user to sign up page
@@ -73,12 +74,12 @@ exports.login = (req, res, next)=>{
 // Get profile
 exports.profile = (req, res, next)=>{
     let id = req.session.user;
-    Promise.all([User.findById(id), Event.find({host: id})])
+    Promise.all([User.findById(id), Event.find({host: id}), RSVP.find({attendee:id}).populate('event')])
     .then(results=>{
-        const [user, events] = results;
+        const [user, events, rsvp] = results;
         Event.find({host: id}).distinct('sport')
         .then(sports =>{
-            res.render('./user/profile', {user, events, sports, DateTime});
+            res.render('./user/profile', {user, events, sports, rsvp, DateTime});
         })
         .catch(err=>next(err));
         

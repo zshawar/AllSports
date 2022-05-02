@@ -16,11 +16,20 @@
         </section>
     </div>
     <%if(user == event.host._id) {%>
-    <form class="eventButtons">
-        <button type="submit" class="updateButton" formmethod="GET" formaction="/events/<%=event._id%>/edit">Update</button>
-        <button type="submit" class="deleteButton" formmethod="POST" formaction="/events/<%=event._id%>?_method=DELETE">Delete</button>
-    </form>
-    <%}%>
+        <form class="eventButtons">
+            <p>2 members RSVP'd</p>
+            <button type="submit" class="updateButton" formmethod="GET" formaction="/events/<%=event._id%>/edit">Update</button>
+            <button type="submit" class="deleteButton" formmethod="POST" formaction="/events/<%=event._id%>?_method=DELETE">Delete</button>
+        </form>
+    <%} else { %>
+        <form class="eventButtons">
+            <p>2 members RSVP'd</p>
+            <h3>RSVP to Attend!</h3>
+            <button type="submit" class="yesButton" formmethod="POST" formaction="/events/<%=event._id%>/rsvp" name="answer" value="YES">Yes</button>
+            <button type="submit" class="noButton" formmethod="POST" formaction="/events/<%=event._id%>/rsvp" name="answer" value="NO">No</button>
+            <button type="submit" class="maybeButton" formmethod="POST" formaction="/events/<%=event._id%>/rsvp" name="answer" value="MAYBE">Maybe</button>
+        </form>
+    <% } %>
 </main>
 
 <%- include('../partials/footer.ejs') %>

@@ -324,6 +324,34 @@ color: black;
     background-color: #3454e2;
 }
 
+.yesButton {
+    color: white;
+    background-color: #00a01d;
+}
+
+.yesButton:hover {
+    background-color: #2b8112;
+}
+
+.noButton {
+    color: white;
+    background-color: #FF3F3F;
+}
+
+.noButton:hover {
+    background-color: #b82e2e;
+}
+
+.maybeButton {
+    color: white;
+    background-color: #5271FF;
+    margin-right: 10px;
+}
+
+.maybeButton:hover {
+    background-color: #3454e2;
+}
+
 
 /* form css */
 

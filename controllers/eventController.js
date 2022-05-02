@@ -1,4 +1,5 @@
 const model = require('../models/event');
+const RSVP = require('../models/rsvp');
 const { DateTime } = require('luxon');
 
 //GET /events: send all events to the user
@@ -48,11 +49,11 @@ exports.create = (req, res, next) => {
 exports.show = (req, res, next) => {
     let id = req.params.id;
     
-    model.findById(id).populate('host', 'firstName lastName')
-    .then(event=>{
+    Promise.all([model.findById(id).populate('host', 'firstName lastName'),rsvp.count({event: id, answer:"YES"})])
+    .then(results=>{
+        const[event, count]  = results;
         if(event) {
-            console.log(event);
-            res.render('./event/show', {event, DateTime});
+            res.render('./event/show', {event, count, DateTime});
         } else {
             let err = new Error('Cannot find an event with id ' + id);
             err.status = 404;
@@ -99,10 +100,27 @@ exports.delete = (req, res, next)=>{
     let id = req.params.id;
 
 
-    model.findByIdAndDelete(id, {useFindAndModify: false})
+    Promise.all([model.findByIdAndDelete(id, {useFindAndModify: false}), RSVP.deleteMany({event:id})])
     .then(event => {
         req.flash('success', 'You have successfully deleted the event');
         res.redirect('/events');
+    })
+    .catch(err=>next(err));
+    
+};
+
+
+//POST /events/:id/rsvp: Send rsvp request
+exports.rsvp = (req, res, next) => {
+    let id = req.params.id;
+    let rsvpAnswer = req.body.answer;
+    let attendee = req.session.user;
+
+    
+    RSVP.findOneAndUpdate({event: id, attendee: attendee}, {answer: rsvpAnswer}, {runValidators: true, new: true, upsert: true})
+    .then((rsvp)=>{
+        req.flash('success', 'You have successfully rsvpd to the event');
+        res.redirect('/users/profile');
     })
     .catch(err=>next(err));
     
