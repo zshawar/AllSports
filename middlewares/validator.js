@@ -37,20 +37,26 @@ exports.validateEvent = [body('sport', 'Sport cannot be empty').notEmpty().trim(
 body('title', 'Title cannot be empty').notEmpty().trim().escape(),
 body('details', 'Content needs a minimum length of 10 characters').isLength({min:10}).trim().escape(),
 body('location', 'Location cannot be empty').notEmpty().trim().escape(),
-body('date', 'Date cannot be empty').notEmpty().trim().escape(),
-body('start', 'Start Time cannot be empty').notEmpty().trim().escape(),
-body('end', 'End Time cannot be empty').notEmpty().trim().escape(),
+body('date', 'Date cannot be empty and has to be after today\'s date').notEmpty().isDate().isAfter(new Date().toDateString()).trim().escape(),
+body('start', 'Start Time cannot be empty').notEmpty().trim().escape().matches(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/),
+body('end', 'End Time cannot be empty').notEmpty().trim().escape().matches(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/),
 body('image', 'Image cannot be empty').notEmpty().trim()
 ];
 
 
 // Middleware for start and end time
-exports.validateTime = [body('start').matches('/^(0[0-9]1[0-9]2[0-3]):[0-5][0-9]$/'),
-body('end').custom((end,{req})=>{
+exports.validateTime = body('end').custom((end,{req})=>{
     let start = req.body.start;
-    let startMin = parseInt(start.split((":")[0])*60) + parseInt(start.split((":")[1]));
-    let endMin = parseInt(end.split((":")[0])*60) + parseInt(end.split((":")[1]));
-    if (endMin < startMin){
-        
+    let startMin = start.split(":")[0]+ start.split(":")[1];
+    let endMin = end.split(":")[0] + end.split(":")[1];
+    console.log(startMin);
+    console.log(endMin);
+    if (endMin <= startMin){
+        throw new Error('Start time needs to be before end time');
+    } else {
+        return true;
     }
-})]
+});
+
+exports.validateRSVP= [body('answer', 'RSVP cannot be empty').notEmpty(),
+body('answer', 'RSVP must be Yes, No, or Maybe').toUpperCase().isIn(['YES', 'NO', 'MAYBE']).trim().escape()];

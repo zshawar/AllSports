@@ -49,7 +49,7 @@ exports.create = (req, res, next) => {
 exports.show = (req, res, next) => {
     let id = req.params.id;
     
-    Promise.all([model.findById(id).populate('host', 'firstName lastName'),rsvp.count({event: id, answer:"YES"})])
+    Promise.all([model.findById(id).populate('host', 'firstName lastName'),RSVP.count({event: id, answer:"YES"})])
     .then(results=>{
         const[event, count]  = results;
         if(event) {
@@ -119,7 +119,7 @@ exports.rsvp = (req, res, next) => {
     
     RSVP.findOneAndUpdate({event: id, attendee: attendee}, {answer: rsvpAnswer}, {runValidators: true, new: true, upsert: true})
     .then((rsvp)=>{
-        req.flash('success', 'You have successfully rsvpd to the event');
+        req.flash('success', 'You have successfully updated your rsvp to the event');
         res.redirect('/users/profile');
     })
     .catch(err=>next(err));

@@ -2,36 +2,67 @@
 
 <main class="events">
 
-    <section class="eventContent">
+    <section>
         <h1 class="profileName"><%=user.firstName%>'s Events</h1>
-        <% if(events.length) {%>
-            <% sports.forEach(category=>{ %>
-                <h1 class="eventCategory"><%= category %></h1>
-                <section class="eventCards">
+        <div class="profileContent">
+            <% if(events.length) {%>
+            <table>
+                <tr>
+                  <th>Event</th>
+                  <th>Sport</th>
+                  <th>Actions</th>
+                </tr>
+                <% sports.forEach(category=>{ %>
                     <% events.forEach(event=>{ %>
-                     <%   if(category === event.sport) {%>
-                    <a class="eventLink" href="/events/<%=event._id%>">
-                        <div class="cardContainer">
-                            <h3><%=event.title%></h3>
-                            <p class="hideExtra"><span>Location:</span> <%=event.location%></p>
-                            <p><span>Date:</span> <%= DateTime.fromISO(event.date).toLocaleString(DateTime.DATE_HUGE) %></p>
-                            <img src="<%=event.image%>" alt="Event Image"/>
-                            <form>
-                                <aside>
-                                    <button type="submit" class="updateButton" formmethod="GET" formaction="/events/<%=event._id%>/edit">Update</button>
-                                    <button type="submit" class="deleteButton" formmethod="POST" formaction="/events/<%=event._id%>?_method=DELETE">Delete</button>
-                                </aside>
-                            </form>
-                                
-                            
-                        </div>
-                    </a>
-                    <% } }); %>
-                </section>
-        <% }); } else {%>
-            <h2 class="eventCategory">You are currently hosting no events</h2>
-            <% } %>
+                        <%   if(category === event.sport) {%>
+                <tr>
+                    <td><a class="eventLink rsvpLink" href="/events/<%=event._id%>"><%=event.title%></a></td>
+                    <td><%= event.sport %></td>
+                    <td>
+                        <form>
+                            <aside>
+                                <button type="submit" class="updateButtonProfile" formmethod="GET" formaction="/events/<%=event._id%>/edit">Update</button>
+                                <button type="submit" class="deleteButtonProfile" formmethod="POST" formaction="/events/<%=event._id%>?_method=DELETE">Delete</button>
+                            </aside>
+                        </form>
+                    </td>
+                </tr>
+                <% } }); });%>
+                
+              </table>
+              <%  } else {%>
+                <h3 class="profileName">You are currently hosting no events</h3>
+                <% } %>
+        </div>
     </section>
+
+
+    <section >
+        <h1 class="profileName"><%=user.firstName%>'s RSVPs</h1>
+        
+        <div class="profileContent">
+            <% if(rsvp.length) {%>
+            <table>
+                <tr>
+                  <th>Event</th>
+                  <th>Sport</th>
+                  <th>Going?</th>
+                </tr>
+                <% rsvp.forEach(rsvp=>{ %>
+                    <tr>
+                    <td><a class="eventLink rsvpLink" href="/events/<%=rsvp.event._id%>"><%=rsvp.event.title%></a></td>
+                    <td><%= rsvp.event.sport %></td>
+                    <td><%= rsvp.answer %></td>
+                    </tr>
+                <% }) %>
+              </table>
+            <% } else {%>
+            <h3 class="profileName">You currently have no rsvps</h3>
+            <% } %>
+        </div>
+            
+    </section>
+
 </main>
 
 <%- include('../partials/footer.ejs') %>

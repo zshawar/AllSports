@@ -77,9 +77,11 @@ exports.profile = (req, res, next)=>{
     Promise.all([User.findById(id), Event.find({host: id}), RSVP.find({attendee:id}).populate('event')])
     .then(results=>{
         const [user, events, rsvp] = results;
+        console.log(rsvp);
         Event.find({host: id}).distinct('sport')
         .then(sports =>{
-            res.render('./user/profile', {user, events, sports, rsvp, DateTime});
+             res.render('./user/profile', {user, events, sports, rsvp, DateTime});
+
         })
         .catch(err=>next(err));
         
