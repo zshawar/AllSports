@@ -1,6 +1,7 @@
 const model = require('../models/event');
 const RSVP = require('../models/rsvp');
 const { DateTime } = require('luxon');
+const validator = require('validator');
 
 //GET /events: send all events to the user
 exports.index = (req, res, next) => {
@@ -29,6 +30,10 @@ exports.create = (req, res, next) => {
     // create new event document
     let event = new model(req.body);
     event.host = req.session.user;
+    event.details = validator.unescape(event.details);
+    event.sport = validator.unescape(event.sport);
+    event.title = validator.unescape(event.title);
+    event.location = validator.unescape(event.location);
     //insert document to database
     event.save()
     .then((event)=>{
@@ -78,6 +83,10 @@ exports.edit = (req, res, next) => {
 exports.update = (req, res, next) => {
     let event = req.body;
     let id = req.params.id;
+    event.details = validator.unescape(event.details);
+    event.sport = validator.unescape(event.sport);
+    event.title = validator.unescape(event.title);
+    event.location = validator.unescape(event.location);
 
 
     model.findByIdAndUpdate(id, event, {useFindAndModify: false, runValidators: true})
