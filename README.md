@@ -21,10 +21,10 @@ A number of node.js tools is necessary to initialize and test the project. You m
 #### MongoDB
 The project uses MongoDB as a database. If you are on Mac and using Homebrew package manager the installation is as simple as `brew install mongodb`.
 
-### Nodemon
-The project was run using nodemon. You can learn more about nodemon from [https://github.com/remy/nodemon/blob/main/README.md]
+#### Nodemon
+The project was run using nodemon. You can learn more about nodemon from [https://github.com/remy/nodemon/blob/main/README.md](https://github.com/remy/nodemon/blob/main/README.md) This will start the server.
 Once installed nodemon can be used with this application with the following command.
 ```
 nodemon app
 ```
-This will start the server.
+
